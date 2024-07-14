@@ -57,8 +57,12 @@ export const Field = ({
     },
 
     '& .MuiFormLabel-root.Mui-focused': {
-      color: '#9B9FAA',
+      opacity: 0,
     },
+  };
+
+  const inputStyle = {
+    autoComplete: 'off',
   };
 
   return (
@@ -72,6 +76,7 @@ export const Field = ({
       onChange={onChange}
       variant="standard"
       required={required}
+      InputProps={inputStyle}
     ></TextField>
   );
 };

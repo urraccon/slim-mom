@@ -3,7 +3,7 @@ import { Box, Modal } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
 
-const navigationBoxStyle = {
+const navBoxStyle = {
   width: '100%',
   height: '100%',
   position: 'absolute',
@@ -11,24 +11,26 @@ const navigationBoxStyle = {
   outline: 'none',
 };
 
-const navigationBackdropProps = {
+const navBackdropProps = {
   style: {
     height: 'calc(100% - 80px)',
     top: '80px',
   },
 };
 
-const navigationModalStyle = {
+const navModalStyle = {
   height: 'calc(100% - 80px)',
   top: '80px',
 };
 
 export const ModalComp = ({ children, type, open, onClose }) => {
   const isMobile = useMediaQuery({ maxWidth: 544 });
+  const isTablet = useMediaQuery({ minWidth: 545 });
 
-  const dailyCaloriesIntakeBoxStyle = {
-    width: isMobile ? '100%' : '672px',
-    height: isMobile ? '100%' : '572px',
+  const dailyCalBoxStyle = {
+    width: '100%',
+    height: isTablet ? '572px' : '100%',
+    maxWidth: isTablet && '672px',
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -37,8 +39,14 @@ export const ModalComp = ({ children, type, open, onClose }) => {
     outline: 'none',
   };
 
-  const dailyCaloriesIntakeBackdropProps = {
-    invisible: isMobile && true,
+  const dailyCalBackdrop = {
+    style: {
+      top: isMobile && '80px',
+    },
+  };
+
+  const dailyCalModalStyle = {
+    top: isMobile && '80px',
   };
 
   useEffect(() => {
@@ -60,19 +68,20 @@ export const ModalComp = ({ children, type, open, onClose }) => {
         <Modal
           open={open}
           onClose={onClose}
-          BackdropProps={navigationBackdropProps}
-          sx={navigationModalStyle}
+          BackdropProps={navBackdropProps}
+          sx={navModalStyle}
         >
-          <Box sx={navigationBoxStyle}>{children}</Box>
+          <Box sx={navBoxStyle}>{children}</Box>
         </Modal>
       )}
       {type === 'daily-calories' && (
         <Modal
           open={open}
           onClose={onClose}
-          BackdropProps={dailyCaloriesIntakeBackdropProps}
+          BackdropProps={dailyCalBackdrop}
+          sx={dailyCalModalStyle}
         >
-          <Box sx={dailyCaloriesIntakeBoxStyle}>{children}</Box>
+          <Box sx={dailyCalBoxStyle}>{children}</Box>
         </Modal>
       )}
     </>

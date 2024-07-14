@@ -1,7 +1,7 @@
 import { Container, Fields, Form, FormTitle } from './DailyCaloriesFrom.styles';
 import { ButtonComp } from 'components/common/components/Button';
 import { Field } from 'components/common/components/Field';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RadioComp } from '../../../../common/components/Radio';
 import { useMediaQuery } from 'react-responsive';
 import {
@@ -11,6 +11,7 @@ import {
 } from 'components/common/services/validation';
 import { calcDailyCalories } from 'components/common/services/calculator';
 import { ModalComp } from 'components/common/components/Modal';
+import { DailyCaloriesIntake } from './components/DailyCaloriesIntake';
 
 export const DailyCaloriesForm = () => {
   const [height, setHeight] = useState('');
@@ -23,7 +24,12 @@ export const DailyCaloriesForm = () => {
   const [curWtErr, setCurWtErr] = useState(false);
   const [desWtErr, setDesWtErr] = useState(false);
   const [open, setOpen] = useState(false);
-  const [dailyCal, setDailyCal] = useState('');
+  const [dailyCal, setDailyCal] = useState(0);
+  const [restFood, setRestFood] = useState([]);
+
+  useEffect(() => {
+    setRestFood(['Flour products', 'Milk', 'Read meat', 'Smoked meats']);
+  }, []);
 
   const isMobile = useMediaQuery({ maxWidth: 544 });
   const isTablet = useMediaQuery({ maxWidth: 1024 });
@@ -134,7 +140,13 @@ export const DailyCaloriesForm = () => {
         type="daily-calories"
         open={open}
         onClose={() => setOpen(false)}
-      ></ModalComp>
+      >
+        <DailyCaloriesIntake
+          calories={dailyCal}
+          restFood={restFood}
+          onClick={() => setOpen(false)}
+        />
+      </ModalComp>
     </>
   );
 };
