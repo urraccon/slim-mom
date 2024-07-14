@@ -1,5 +1,5 @@
 const initialState = {
-  isLoading: false,
+  status: false,
 };
 
 const loadingReducer = (state = initialState, action) => {
@@ -7,12 +7,12 @@ const loadingReducer = (state = initialState, action) => {
     case 'START_LOADING':
       return {
         ...state,
-        isLoading: true,
+        status: true,
       };
     case 'STOP_LOADING':
       return {
         ...state,
-        isLoading: false,
+        status: false,
       };
     default:
       return state;

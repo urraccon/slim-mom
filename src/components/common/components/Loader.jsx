@@ -1,4 +1,6 @@
 import { Backdrop, CircularProgress } from '@mui/material';
+import { selectLoading } from 'components/redux/loading/selectors';
+import { useSelector } from 'react-redux';
 
 const backdropStyle = {
   color: '#fff',
@@ -10,9 +12,15 @@ const loadingStyle = {
 };
 
 export const Loader = () => {
+  const loading = useSelector(selectLoading);
+
   return (
-    <Backdrop sx={backdropStyle} open={true}>
-      <CircularProgress sx={loadingStyle} />
-    </Backdrop>
+    <>
+      {loading && (
+        <Backdrop sx={backdropStyle} open={true}>
+          <CircularProgress sx={loadingStyle} />
+        </Backdrop>
+      )}
+    </>
   );
 };

@@ -14,7 +14,7 @@ const dividerStyle = {
   borderWidth: '1px',
 };
 
-export const Header = ({ route }) => {
+export const Header = ({ type, username }) => {
   const isMobile = useMediaQuery({ maxWidth: 544 });
   const isTablet = useMediaQuery({ maxWidth: 1024, minWidth: 545 });
   const isDesktop = useMediaQuery({ minWidth: 1025 });
@@ -22,20 +22,20 @@ export const Header = ({ route }) => {
   return (
     <Section>
       <MainContainer>
-        <Logo route={route} />
+        <Logo type={type} />
         {isDesktop && <Divider orientation="vertical" sx={dividerStyle} />}
         <Container>
-          {isTablet && route === 'private' && <UserInfo username="alex" />}
-          <Navigation route={route} />
+          {isTablet && type === 'private' && <UserInfo username={username} />}
+          <Navigation type={type} />
         </Container>
       </MainContainer>
-      {(isMobile || isDesktop) && route === 'private' && (
-        <UserInfo username="alex" />
+      {(isMobile || isDesktop) && type === 'private' && (
+        <UserInfo username={username} />
       )}
     </Section>
   );
 };
 
 Header.propTypes = {
-  route: PropTypes.string,
+  type: PropTypes.string,
 };

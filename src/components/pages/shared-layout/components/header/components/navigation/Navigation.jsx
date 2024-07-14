@@ -7,11 +7,11 @@ import {
 } from './Navigation.styles';
 import MenuIcon from '@mui/icons-material/Menu';
 import PropTypes from 'prop-types';
-import { ModalComp } from 'components/common/components/modal/Modal';
 import { useState } from 'react';
 import CloseIcon from '@mui/icons-material/Close';
 import { Button } from '@mui/material';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { ModalComp } from 'components/common/components/Modal';
 
 const btnStyle = {
   color: 'black',
@@ -23,102 +23,113 @@ const btnStyle = {
   alignSelf: 'end',
 };
 
-// const activeBtn = {
-//   color: '#212121',
-// };
+const activeBtn = {
+  all: 'unset',
+  color: '#212121',
+};
 
-export const Navigation = ({ route }) => {
+const navLinkStyle = {
+  all: 'unset',
+};
+
+export const Navigation = ({ type }) => {
   const isDesktop = useMediaQuery({ minWidth: 1025 });
 
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      {route === 'private' &&
+      {type === 'private' &&
         (isDesktop ? (
           <NavMenu>
             <NavBtn>
-              {/* <NavLink
-          to="/user/:userId/diary"
-          style={({ isActive }) =>
-            isActive && activeBtn
-          }
-        > */}
-              Diary
-              {/* </NavLink> */}
+              <NavLink
+                to="diary"
+                style={({ isActive }) => {
+                  if (isActive) {
+                    return activeBtn;
+                  } else {
+                    return navLinkStyle;
+                  }
+                }}
+              >
+                Diary
+              </NavLink>
             </NavBtn>
             <NavBtn>
-              {/* <NavLink
-          to="/user/:userId/calculator"
-          style={({ isActive }) =>
-            isActive && activeBtn
-          }
-        > */}
-              Calculator
-              {/* </NavLink> */}
+              <NavLink
+                to="calculator"
+                style={({ isActive }) => {
+                  if (isActive) {
+                    return activeBtn;
+                  } else {
+                    return navLinkStyle;
+                  }
+                }}
+              >
+                Calculator
+              </NavLink>
             </NavBtn>
           </NavMenu>
+        ) : open ? (
+          <Button sx={btnStyle}>
+            <CloseIcon onClick={() => setOpen(false)} />
+          </Button>
         ) : (
-          <>
-            {open ? (
-              <Button sx={btnStyle}>
-                <CloseIcon onClick={() => setOpen(false)} />
-              </Button>
-            ) : (
-              <Button sx={btnStyle}>
-                <MenuIcon onClick={() => setOpen(true)} />
-              </Button>
-            )}
-            <ModalComp open={open} type="navigation">
-              <ModalNavMenu>
-                <ModalNavBtn>
-                  {/* <NavLink
-          to="/user/:userId/diary"
-          }
-        > */}
-                  Diary
-                  {/* </NavLink> */}
-                </ModalNavBtn>
-                <ModalNavBtn>
-                  {/* <NavLink
-          to="/user/:userId/calculator"
-          }
-        > */}
-                  Calculator
-                  {/* </NavLink> */}
-                </ModalNavBtn>
-              </ModalNavMenu>
-            </ModalComp>
-          </>
+          <Button sx={btnStyle}>
+            <MenuIcon onClick={() => setOpen(true)} />
+          </Button>
         ))}
-      {route === 'public' && (
+      {type === 'public' && (
         <NavMenu>
           <NavBtn>
-            {/* <NavLink
-          to="/login"
-          style={({ isActive }) =>
-            isActive && activeBtn
-          }
-        > */}
-            Log in
-            {/* </NavLink> */}
+            <NavLink
+              to="login"
+              style={({ isActive }) => {
+                if (isActive) {
+                  return activeBtn;
+                } else {
+                  return navLinkStyle;
+                }
+              }}
+            >
+              Log in
+            </NavLink>
           </NavBtn>
           <NavBtn>
-            {/* <NavLink
-          to="/registration"
-          style={({ isActive }) =>
-            isActive && activeBtn
-          }
-        > */}
-            Registration
-            {/* </NavLink> */}
+            <NavLink
+              to="registration"
+              style={({ isActive }) => {
+                if (isActive) {
+                  return activeBtn;
+                } else {
+                  return navLinkStyle;
+                }
+              }}
+            >
+              Registration
+            </NavLink>
           </NavBtn>
         </NavMenu>
       )}
+      <ModalComp open={open} type="navigation">
+        <ModalNavMenu>
+          <ModalNavBtn>
+            <NavLink to="diary" style={navLinkStyle}>
+              Diary
+            </NavLink>
+          </ModalNavBtn>
+          <ModalNavBtn>
+            <NavLink to="calculator" style={navLinkStyle}>
+              Calculator
+            </NavLink>
+          </ModalNavBtn>
+        </ModalNavMenu>
+      </ModalComp>
     </>
   );
 };
 
 Navigation.propTypes = {
-  route: PropTypes.string,
+  type: PropTypes.string,
 };

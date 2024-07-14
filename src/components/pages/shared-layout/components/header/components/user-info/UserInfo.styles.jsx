@@ -19,6 +19,7 @@ export const ProfileBtn = styled.li`
 
   &:hover {
     color: #212121;
+    cursor: pointer;
   }
 `;
 
