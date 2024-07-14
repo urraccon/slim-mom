@@ -9,8 +9,9 @@ export const Field = ({
   value,
   onChange,
   required,
+  style,
 }) => {
-  const fieldStyle = {
+  const defaultStyle = {
     width: '240px',
 
     '& label': {
@@ -34,6 +35,10 @@ export const Field = ({
 
     '& div::before': {
       borderColor: '#e0e0e0',
+    },
+
+    '& .MuiInputBase-root:hover::before': {
+      borderColor: '#9B9FAA',
     },
 
     '& div::after': {
@@ -61,13 +66,13 @@ export const Field = ({
     },
   };
 
-  const inputStyle = {
+  const inputProps = {
     autoComplete: 'off',
   };
 
   return (
     <TextField
-      sx={fieldStyle}
+      sx={defaultStyle}
       error={error}
       type={type}
       id={id}
@@ -76,7 +81,8 @@ export const Field = ({
       onChange={onChange}
       variant="standard"
       required={required}
-      InputProps={inputStyle}
+      inputProps={inputProps}
+      style={style}
     ></TextField>
   );
 };
@@ -89,4 +95,5 @@ Field.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   required: PropTypes.bool,
+  style: PropTypes.object,
 };

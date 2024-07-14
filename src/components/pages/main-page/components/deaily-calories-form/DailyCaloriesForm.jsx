@@ -1,4 +1,9 @@
-import { Container, Fields, Form, FormTitle } from './DailyCaloriesFrom.styles';
+import {
+  FormContainer,
+  Fields,
+  Form,
+  FormTitle,
+} from './DailyCaloriesFrom.styles';
 import { ButtonComp } from 'components/common/components/Button';
 import { Field } from 'components/common/components/Field';
 import { useEffect, useState } from 'react';
@@ -42,6 +47,7 @@ export const DailyCaloriesForm = () => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+
     const validHeight = heightValidation(height);
     const validAge = ageValidation(age);
     const validCurWt = weightValidation(curWt);
@@ -81,7 +87,7 @@ export const DailyCaloriesForm = () => {
 
   return (
     <>
-      <Container>
+      <FormContainer>
         <FormTitle>Calculate your daily calorie intake right now</FormTitle>
         <Form onSubmit={handleSubmit}>
           <Fields>
@@ -135,17 +141,13 @@ export const DailyCaloriesForm = () => {
           </ButtonComp>
           <ModalComp />
         </Form>
-      </Container>
+      </FormContainer>
       <ModalComp
         type="daily-calories"
         open={open}
         onClose={() => setOpen(false)}
       >
-        <DailyCaloriesIntake
-          calories={dailyCal}
-          restFood={restFood}
-          onClick={() => setOpen(false)}
-        />
+        <DailyCaloriesIntake calories={dailyCal} restFood={restFood} />
       </ModalComp>
     </>
   );

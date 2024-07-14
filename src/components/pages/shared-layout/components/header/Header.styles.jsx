@@ -6,6 +6,7 @@ export const MainContainer = styled.div`
 
   @media screen and (min-width: 1025px) {
     gap: 20px;
+    height: unset;
   }
 
   @media screen and (max-width: 1024px) {

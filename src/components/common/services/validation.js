@@ -15,3 +15,27 @@ export const weightValidation = weight => {
 
   return valid;
 };
+
+export const emailValidation = email => {
+  const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  return valid;
+};
+
+export const passValidation = pass => {
+  const valid = /^.{8,}$/.test(pass);
+
+  return valid;
+};
+
+export const nameValidation = name => {
+  const valid = /^[A-Za-z]+$/.test(name);
+
+  return valid;
+};
+
+export const createdPassValidation = pass => {
+  const valid = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pass);
+
+  return valid;
+};

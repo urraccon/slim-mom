@@ -2,6 +2,9 @@ import { useEffect } from 'react';
 import { Box, Modal } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
+import { Button } from '@mui/material';
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
+import CloseIcon from '@mui/icons-material/Close';
 
 const navBoxStyle = {
   width: '100%',
@@ -21,6 +24,42 @@ const navBackdropProps = {
 const navModalStyle = {
   height: 'calc(100% - 80px)',
   top: '80px',
+};
+
+const returnBtnStyle = {
+  width: '100%',
+  height: '40px',
+  borderRadius: 0,
+  backgroundColor: '#EFF1F3',
+  color: '#9B9FAA',
+  justifyContent: 'start',
+  paddingLeft: '20px',
+
+  '&:hover': {
+    backgroundColor: '#EFF1F3',
+  },
+};
+
+const returnIconStyle = {
+  width: '12px',
+  color: 'black',
+  stroke: 'black',
+  strokeWidth: 1,
+};
+
+const closeIconStyle = {
+  color: 'black',
+  height: '20px',
+  width: '20px',
+};
+
+const closeBtnStyle = {
+  position: 'absolute',
+  top: '20px',
+  right: '20px',
+  padding: 0,
+  minWidth: 'unset',
+  color: 'black',
 };
 
 export const ModalComp = ({ children, type, open, onClose }) => {
@@ -81,7 +120,18 @@ export const ModalComp = ({ children, type, open, onClose }) => {
           BackdropProps={dailyCalBackdrop}
           sx={dailyCalModalStyle}
         >
-          <Box sx={dailyCalBoxStyle}>{children}</Box>
+          <Box sx={dailyCalBoxStyle}>
+            {isTablet ? (
+              <Button sx={closeBtnStyle} onClick={onClose}>
+                <CloseIcon sx={closeIconStyle} />
+              </Button>
+            ) : (
+              <Button sx={returnBtnStyle} onClick={onClose}>
+                <KeyboardReturnIcon sx={returnIconStyle} />
+              </Button>
+            )}
+            {children}
+          </Box>
         </Modal>
       )}
     </>

@@ -3,50 +3,54 @@ import styled from 'styled-components';
 export const FormContainer = styled.div`
   position: absolute;
   top: 80px;
-  margin: 32px 20px 0;
   display: flex;
   flex-direction: column;
-  gap: 34px;
+  gap: 55px;
+  padding: 40px 20px 0;
+  align-items: center;
+  width: 100%;
 
   @media screen and (min-width: 545px) {
-    margin: 100px 32px 0;
-    max-width: 520px;
-    gap: 68px;
+    align-items: start;
+    padding: 160px 32px 0;
   }
 
   @media screen and (min-width: 1025px) {
-    margin: 213px 16px 0;
+    padding: 226px 16px 0;
   }
 `;
 
 export const FormTitle = styled.h4`
   margin: 0;
-  line-height: 25.2px;
-
-  @media screen and (min-width: 545px) {
-    font-size: 34px;
-    line-height: 140%;
-  }
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 0.56px;
+  color: #fc842d;
+  text-transform: uppercase;
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 40px;
-
-  @media screen and (min-width: 545px) {
-    gap: 60px;
-  }
+  gap: 60px;
+  width: 100%;
 `;
 
 export const Fields = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 40px;
+`;
+
+export const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
 
   @media screen and (min-width: 545px) {
-    max-height: 200px;
-    row-gap: 40px;
-    flex-wrap: wrap;
+    align-items: start;
+    flex-direction: row;
+    gap: 32px;
   }
 `;

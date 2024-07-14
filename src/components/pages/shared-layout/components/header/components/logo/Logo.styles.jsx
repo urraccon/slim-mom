@@ -6,6 +6,6 @@ export const Image = styled.img`
   }
 
   @media screen and (min-width: 1025px) {
-    padding-bottom: 7px;
+    padding-bottom: 3px;
   }
 `;

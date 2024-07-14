@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import desktopBg from './images/desktop-main-page-bg.jpg';
-import tabletBg from './images/tablet-main-page-bg.jpg';
+import desktopBg from './images/desktop-registration-bg.jpg';
+import tabletBg from './images/tablet-registration-bg.jpg';
 
 export const Section = styled.section`
   width: 100vw;
@@ -10,7 +10,7 @@ export const Section = styled.section`
   z-index: -1;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
+  background-repet: no-repeat;
 
   @media screen and (min-width: 545px) {
     background-image: url(${tabletBg});

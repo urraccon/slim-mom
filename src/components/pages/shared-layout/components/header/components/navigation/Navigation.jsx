@@ -98,7 +98,7 @@ export const Navigation = ({ type }) => {
           </NavBtn>
           <NavBtn>
             <NavLink
-              to="registration"
+              to="register"
               style={({ isActive }) => {
                 if (isActive) {
                   return activeBtn;
