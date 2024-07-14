@@ -1,15 +1,19 @@
 {
   "files": {
     "main.css": "/slim-mom/static/css/main.b84ee46e.css",
-    "main.js": "/slim-mom/static/js/main.e61a65e8.js",
-    "static/media/desktop-public-bg.jpg": "/slim-mom/static/media/desktop-public-bg.15e8a8d96a926ec26809.jpg",
-    "static/media/tablet-public-bg.jpg": "/slim-mom/static/media/tablet-public-bg.dd04d75f816eeacb9fec.jpg",
+    "main.js": "/slim-mom/static/js/main.0dda319b.js",
+    "static/media/desktop-login-bg.jpg": "/slim-mom/static/media/desktop-login-bg.15e8a8d96a926ec26809.jpg",
+    "static/media/desktop-main-page-bg.jpg": "/slim-mom/static/media/desktop-main-page-bg.15e8a8d96a926ec26809.jpg",
+    "static/media/desktop-registration-bg.jpg": "/slim-mom/static/media/desktop-registration-bg.15e8a8d96a926ec26809.jpg",
+    "static/media/tablet-login-bg.jpg": "/slim-mom/static/media/tablet-login-bg.bd8717ec6382f128891f.jpg",
+    "static/media/tablet-registration-bg.jpg": "/slim-mom/static/media/tablet-registration-bg.bd8717ec6382f128891f.jpg",
+    "static/media/tablet-main-page-bg.jpg": "/slim-mom/static/media/tablet-main-page-bg.dd04d75f816eeacb9fec.jpg",
     "index.html": "/slim-mom/index.html",
     "main.b84ee46e.css.map": "/slim-mom/static/css/main.b84ee46e.css.map",
-    "main.e61a65e8.js.map": "/slim-mom/static/js/main.e61a65e8.js.map"
+    "main.0dda319b.js.map": "/slim-mom/static/js/main.0dda319b.js.map"
   },
   "entrypoints": [
     "static/css/main.b84ee46e.css",
-    "static/js/main.e61a65e8.js"
+    "static/js/main.0dda319b.js"
   ]
 }
