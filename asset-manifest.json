@@ -1,13 +1,15 @@
 {
   "files": {
     "main.css": "/slim-mom/static/css/main.b84ee46e.css",
-    "main.js": "/slim-mom/static/js/main.acfa0681.js",
+    "main.js": "/slim-mom/static/js/main.e61a65e8.js",
+    "static/media/desktop-public-bg.jpg": "/slim-mom/static/media/desktop-public-bg.15e8a8d96a926ec26809.jpg",
+    "static/media/tablet-public-bg.jpg": "/slim-mom/static/media/tablet-public-bg.dd04d75f816eeacb9fec.jpg",
     "index.html": "/slim-mom/index.html",
     "main.b84ee46e.css.map": "/slim-mom/static/css/main.b84ee46e.css.map",
-    "main.acfa0681.js.map": "/slim-mom/static/js/main.acfa0681.js.map"
+    "main.e61a65e8.js.map": "/slim-mom/static/js/main.e61a65e8.js.map"
   },
   "entrypoints": [
     "static/css/main.b84ee46e.css",
-    "static/js/main.acfa0681.js"
+    "static/js/main.e61a65e8.js"
   ]
 }
