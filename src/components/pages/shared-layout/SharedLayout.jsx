@@ -1,4 +1,8 @@
-import { Suspense, useEffect, useState } from 'react';
+import {
+  Suspense,
+  useEffect,
+  //  useState
+} from 'react';
 import { Header } from './components/header/Header';
 import { Main } from './SharedLayout.styles';
 import { Loader } from 'components/common/components/Loader';
@@ -7,25 +11,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { startLoading, stopLoading } from 'components/redux/loading/actions';
 import {
   selectAuthStatus,
-  selectLoggedIn,
+  // selectLoggedIn,
   selectUserName,
 } from 'components/redux/auth/selectors';
 
 export const SharedLayout = () => {
-  const [type, setType] = useState('public');
+  // const [type, setType] = useState('public');
 
   const username = useSelector(selectUserName);
-  const loggedIn = useSelector(selectLoggedIn);
+  // const loggedIn = useSelector(selectLoggedIn);
   const status = useSelector(selectAuthStatus);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (loggedIn) {
-      setType('private');
-    } else {
-      setType('public');
-    }
-  }, [loggedIn]);
+  // useEffect(() => {
+  //   if (loggedIn) {
+  //     setType('private');
+  //   } else {
+  //     setType('public');
+  //   }
+  // }, [loggedIn]);
 
   useEffect(() => {
     if (status === 'loading') {
@@ -39,7 +43,7 @@ export const SharedLayout = () => {
 
   return (
     <Main>
-      <Header type={type} username={username} />
+      <Header type={'private'} username={username} />
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
