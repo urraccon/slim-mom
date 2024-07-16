@@ -8,8 +8,11 @@ export const Field = ({
   label,
   value,
   onChange,
-  required,
   style,
+  inputProps = {
+    autoComplete: 'off',
+  },
+  inputLabelProps,
 }) => {
   const defaultStyle = {
     width: '240px',
@@ -66,10 +69,6 @@ export const Field = ({
     },
   };
 
-  const inputProps = {
-    autoComplete: 'off',
-  };
-
   return (
     <TextField
       sx={defaultStyle}
@@ -80,9 +79,9 @@ export const Field = ({
       value={value}
       onChange={onChange}
       variant="standard"
-      required={required}
       inputProps={inputProps}
       style={style}
+      InputLabelProps={inputLabelProps}
     ></TextField>
   );
 };
@@ -94,6 +93,7 @@ Field.propTypes = {
   label: PropTypes.string,
   value: PropTypes.string,
   onChange: PropTypes.func,
-  required: PropTypes.bool,
   style: PropTypes.object,
+  inputPropa: PropTypes.object,
+  inputLabelProps: PropTypes.object,
 };

@@ -29,13 +29,25 @@ export const passValidation = pass => {
 };
 
 export const nameValidation = name => {
-  const valid = /^[A-Za-z]+$/.test(name);
+  const valid = /^(?=.*[A-Za-z])[A-Za-z\s-]+$/.test(name);
 
   return valid;
 };
 
 export const createdPassValidation = pass => {
   const valid = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(pass);
+
+  return valid;
+};
+
+export const prodNameValidation = product => {
+  const valid = /^(?=.*[A-Za-z])[A-Za-z ]+$/.test(product);
+
+  return valid;
+};
+
+export const gramsValidation = grams => {
+  const valid = /^\d+$/.test(grams);
 
   return valid;
 };

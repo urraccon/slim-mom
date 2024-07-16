@@ -6,7 +6,7 @@ import {
 } from './DailyCaloriesFrom.styles';
 import { ButtonComp } from 'components/common/components/Button';
 import { Field } from 'components/common/components/Field';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { RadioComp } from '../../../../common/components/Radio';
 import { useMediaQuery } from 'react-responsive';
 import {
@@ -14,11 +14,11 @@ import {
   heightValidation,
   weightValidation,
 } from 'components/common/services/validation';
-import { calcDailyCalories } from 'components/common/services/calculator';
 import { ModalComp } from 'components/common/components/Modal';
 import { DailyCaloriesIntake } from './components/DailyCaloriesIntake';
+import PropTypes from 'prop-types';
 
-export const DailyCaloriesForm = () => {
+export const DailyCaloriesForm = ({ restrictedProdList, dailyRateCal }) => {
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
   const [curWt, setCurWt] = useState('');
@@ -29,12 +29,6 @@ export const DailyCaloriesForm = () => {
   const [curWtErr, setCurWtErr] = useState(false);
   const [desWtErr, setDesWtErr] = useState(false);
   const [open, setOpen] = useState(false);
-  const [dailyCal, setDailyCal] = useState(0);
-  const [restFood, setRestFood] = useState([]);
-
-  useEffect(() => {
-    setRestFood(['Flour products', 'Milk', 'Read meat', 'Smoked meats']);
-  }, []);
 
   const isMobile = useMediaQuery({ maxWidth: 544 });
   const isTablet = useMediaQuery({ maxWidth: 1024 });
@@ -78,9 +72,6 @@ export const DailyCaloriesForm = () => {
     }
 
     if (validHeight && validAge && validCurWt && validDesWt) {
-      const result = Math.round(calcDailyCalories(height, age, curWt, desWt));
-
-      setDailyCal(result);
       setOpen(true);
     }
   }
@@ -93,39 +84,31 @@ export const DailyCaloriesForm = () => {
           <Fields>
             <Field
               error={heightErr}
-              type="text"
               id="height"
-              label="Height"
+              label="Height *"
               value={height}
               onChange={evt => setHeight(evt.target.value)}
-              required={true}
             />
             <Field
               error={ageErr}
-              type="text"
               id="age"
-              label="Age"
+              label="Age *"
               value={age}
               onChange={evt => setAge(evt.target.value)}
-              required={true}
             />
             <Field
               error={curWtErr}
-              type="text"
               id="current-weight"
-              label="Current weight"
+              label="Current weight *"
               value={curWt}
               onChange={evt => setCurWt(evt.target.value)}
-              required={true}
             />
             <Field
               error={desWtErr}
-              type="text"
               id="desired-weight"
-              label="Desired Weight"
+              label="Desired Weight *"
               value={desWt}
               onChange={evt => setDesWt(evt.target.value)}
-              required={true}
             />
             <RadioComp
               id="blood-type"
@@ -139,7 +122,6 @@ export const DailyCaloriesForm = () => {
           <ButtonComp style={btnStyle} type="submit">
             Start losing weight
           </ButtonComp>
-          <ModalComp />
         </Form>
       </FormContainer>
       <ModalComp
@@ -147,8 +129,16 @@ export const DailyCaloriesForm = () => {
         open={open}
         onClose={() => setOpen(false)}
       >
-        <DailyCaloriesIntake calories={dailyCal} restFood={restFood} />
+        <DailyCaloriesIntake
+          dailyRateCal={dailyRateCal}
+          restrictedProdList={restrictedProdList}
+        />
       </ModalComp>
     </>
   );
+};
+
+DailyCaloriesForm.propTypes = {
+  restrictedProdList: PropTypes.array,
+  dailyRateCal: PropTypes.number,
 };

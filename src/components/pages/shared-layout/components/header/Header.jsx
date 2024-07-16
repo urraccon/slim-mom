@@ -1,10 +1,9 @@
 import { useMediaQuery } from 'react-responsive';
-import { Container, Section } from './Header.styles';
+import { Container, TabletContainer, Section } from './Header.styles';
 import { Logo } from './components/logo/Logo';
 import { Navigation } from './components/navigation/Navigation';
 import { Divider } from '@mui/material';
 import { UserInfo } from './components/user-info/UserInfo';
-import { MainContainer } from './Header.styles';
 import PropTypes from 'prop-types';
 
 const dividerStyle = {
@@ -21,14 +20,14 @@ export const Header = ({ type, username }) => {
 
   return (
     <Section>
-      <MainContainer>
+      <Container>
         <Logo type={type} />
         {isDesktop && <Divider orientation="vertical" sx={dividerStyle} />}
-        <Container>
+        <TabletContainer>
           {isTablet && type === 'private' && <UserInfo username={username} />}
           <Navigation type={type} />
-        </Container>
-      </MainContainer>
+        </TabletContainer>
+      </Container>
       {(isMobile || isDesktop) && type === 'private' && (
         <UserInfo username={username} />
       )}

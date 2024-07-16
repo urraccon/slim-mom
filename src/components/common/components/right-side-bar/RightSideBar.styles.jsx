@@ -13,12 +13,14 @@ export const StatsContainer = styled.div`
     padding: 80px 0 80px 32px;
     flex-direction: row;
     gap: 80px;
+    background-color: unset;
   }
 
   @media screen and (min-width: 1025px) {
     flex-direction: column;
-    padding: 149px 0 0 106px;
+    padding: 140px 0 0 106px;
     max-width: 517px;
+    width: 100%;
   }
 `;
 

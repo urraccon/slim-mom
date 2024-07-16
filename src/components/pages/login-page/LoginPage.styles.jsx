@@ -10,7 +10,7 @@ export const Section = styled.section`
   z-index: -1;
   background-size: cover;
   background-position: center;
-  background-repet: no-repeat;
+  background-repeat: no-repeat;
 
   @media screen and (min-width: 545px) {
     background-image: url(${tabletBg});

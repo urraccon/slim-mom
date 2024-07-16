@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import {
   Container,
-  DailyCal,
-  DailyCalTitle,
-  DailyCalValue,
-  Food,
-  FoodList,
+  DailyRateCal,
+  DailyRateCalTitle,
+  Value,
+  Item,
+  List,
   Kcal,
-  RestFood,
-  RestFoodTitle,
+  RestrictedProd,
+  RestrictedProdTitle,
   Space,
+  Text,
 } from './DailyCaloriesIntake.styles';
 import { Divider } from '@mui/material';
 import { ButtonComp } from 'components/common/components/Button';
@@ -21,7 +22,7 @@ const linkStyle = {
   alignSelf: 'center',
 };
 
-export const DailyCaloriesIntake = ({ calories, restFood }) => {
+export const DailyCaloriesIntake = ({ dailyRateCal, restrictedProdList }) => {
   const isTablet = useMediaQuery({ minWidth: 545 });
 
   const dividerStyle = {
@@ -32,25 +33,33 @@ export const DailyCaloriesIntake = ({ calories, restFood }) => {
 
   return (
     <Container>
-      <DailyCal>
-        <DailyCalTitle>Your recommended daily calorie intake is</DailyCalTitle>
-        <DailyCalValue>
-          {calories}
+      <DailyRateCal>
+        <DailyRateCalTitle>
+          Your recommended daily calorie intake is
+        </DailyRateCalTitle>
+        <Value>
+          {dailyRateCal === null ? '0' : dailyRateCal}
           <Space> </Space>
           <Kcal>kcal</Kcal>
-        </DailyCalValue>
-      </DailyCal>
-      <RestFood>
+        </Value>
+      </DailyRateCal>
+      <RestrictedProd>
         <Divider sx={dividerStyle} />
-        <RestFoodTitle>Foods you should not eat</RestFoodTitle>
-        <FoodList>
-          {restFood?.map(food => (
-            <Food key={restFood.indexOf(food)}>
-              {`${restFood.indexOf(food) + 1}. ${food}`}
-            </Food>
-          ))}
-        </FoodList>
-      </RestFood>
+        <RestrictedProdTitle>Foods you should not eat</RestrictedProdTitle>
+        <List>
+          {restrictedProdList.length === 0 ? (
+            <Text>Your diet will be displayed here</Text>
+          ) : (
+            restrictedProdList?.map(restrictedProduct => (
+              <Item key={restrictedProduct.indexOf(restrictedProduct)}>
+                {`${
+                  restrictedProdList.indexOf(restrictedProduct) + 1
+                }. ${restrictedProduct}`}
+              </Item>
+            ))
+          )}
+        </List>
+      </RestrictedProd>
       <NavLink to="login" style={linkStyle}>
         <ButtonComp>Start losing weight</ButtonComp>
       </NavLink>
@@ -59,6 +68,6 @@ export const DailyCaloriesIntake = ({ calories, restFood }) => {
 };
 
 DailyCaloriesIntake.propTypes = {
-  calories: PropTypes.number,
-  restFood: PropTypes.array,
+  dailyRateCal: PropTypes.number,
+  restrictedProdList: PropTypes.array,
 };

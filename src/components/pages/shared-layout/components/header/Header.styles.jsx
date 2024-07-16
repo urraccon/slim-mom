@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainContainer = styled.div`
+export const Container = styled.div`
   height: 80px;
   display: flex;
 
@@ -30,7 +30,7 @@ export const Section = styled.section`
   }
 `;
 
-export const Container = styled.div`
+export const TabletContainer = styled.div`
   display: flex;
   gap: 48px;
 `;

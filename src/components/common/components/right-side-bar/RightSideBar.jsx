@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import {
   Container,
   Item,
@@ -10,18 +11,21 @@ import {
 import PropTypes from 'prop-types';
 
 export const RightSideBar = ({
-  left,
-  consumed,
-  dailyRate,
-  normalPercentages,
+  dailyRateCal,
+  consumedCal,
   date,
-  restrictedFoods,
+  restrictedProdList,
 }) => {
+  const formattedDate = dayjs(date).format('DD.MM.YYYY');
+  const left = dailyRateCal - consumedCal;
+  const normalPercentages = Math.round((consumedCal / dailyRateCal) * 100);
+  console.log(normalPercentages);
+
   return (
     <StatsContainer>
       <Container>
         <Title>
-          Summary for <TextPiece>{date}</TextPiece>
+          Summary for <TextPiece>{formattedDate}</TextPiece>
         </Title>
         <List>
           <Item>
@@ -30,16 +34,22 @@ export const RightSideBar = ({
           </Item>
           <Item>
             <TextPiece>Consumed</TextPiece>
-            <TextPiece>{consumed === 0 ? '000' : consumed} kcal</TextPiece>
+            <TextPiece>
+              {consumedCal === null ? '000' : consumedCal} kcal
+            </TextPiece>
           </Item>
           <Item>
             <TextPiece>Daily rate</TextPiece>
-            <TextPiece>{dailyRate === 0 ? '000' : dailyRate} kcal</TextPiece>
+            <TextPiece>
+              {dailyRateCal === null ? '000' : dailyRateCal} kcal
+            </TextPiece>
           </Item>
           <Item>
             <TextPiece>n% of normal</TextPiece>
             <TextPiece>
-              {normalPercentages === 0 ? '000 kcal' : `${normalPercentages}%`}
+              {isNaN(normalPercentages) === true
+                ? '000 kcal'
+                : `${normalPercentages}%`}
             </TextPiece>
           </Item>
         </List>
@@ -47,12 +57,12 @@ export const RightSideBar = ({
       <Container>
         <Title>Food not recommended</Title>
         <List>
-          {restrictedFoods.length === 0 ? (
+          {restrictedProdList?.length === 0 ? (
             <Text>Your diet will be displayed here</Text>
           ) : (
-            restrictedFoods?.map(restrictedFood => (
-              <Item key={restrictedFoods.indexOf(restrictedFood)}>
-                {restrictedFood}
+            restrictedProdList?.map(restrictedProduct => (
+              <Item key={restrictedProdList.indexOf(restrictedProduct)}>
+                {restrictedProduct}
               </Item>
             ))
           )}
@@ -63,10 +73,8 @@ export const RightSideBar = ({
 };
 
 RightSideBar.propTypes = {
-  left: PropTypes.number,
-  consumed: PropTypes.number,
-  dailyRate: PropTypes.number,
-  normalPercentages: PropTypes.number,
-  date: PropTypes.string,
-  restrictedFoods: PropTypes.array,
+  dailyRateCal: PropTypes.number,
+  consumedCal: PropTypes.number,
+  date: PropTypes.object,
+  restrictedProdList: PropTypes.array,
 };

@@ -86,8 +86,7 @@ export const RegistrationForm = () => {
             error={nameErr}
             id="name"
             type="text"
-            label="Name"
-            required={true}
+            label="Name *"
             style={fieldStyle}
             value={name}
             onChange={evt => setName(evt.target.value)}
@@ -96,8 +95,7 @@ export const RegistrationForm = () => {
             error={emailErr}
             id="email"
             type="email"
-            label="Email"
-            required={true}
+            label="Email *"
             style={fieldStyle}
             value={email}
             onChange={evt => setEmail(evt.target.value)}
@@ -106,8 +104,7 @@ export const RegistrationForm = () => {
             error={passErr}
             id="password"
             type="password"
-            label="Password"
-            required={true}
+            label="Password *"
             style={fieldStyle}
             value={pass}
             onChange={evt => setPass(evt.target.value)}

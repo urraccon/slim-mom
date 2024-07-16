@@ -23,9 +23,16 @@ export const ButtonComp = ({
   type = 'button',
   style,
   variant = 'contained',
+  onClick,
 }) => {
   return (
-    <Button style={style} type={type} variant={variant} sx={defaultStyle}>
+    <Button
+      onClick={onClick}
+      style={style}
+      type={type}
+      variant={variant}
+      sx={defaultStyle}
+    >
       {children}
     </Button>
   );
@@ -35,4 +42,5 @@ ButtonComp.propTypes = {
   type: PropTypes.string,
   style: PropTypes.object,
   variant: PropTypes.string,
+  onClick: PropTypes.func,
 };

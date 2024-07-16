@@ -75,8 +75,7 @@ export const LoginForm = () => {
             error={emailErr}
             id="email"
             type="email"
-            label="Email"
-            required={true}
+            label="Email *"
             style={fieldStyle}
             value={email}
             onChange={evt => setEmail(evt.target.value)}
@@ -85,8 +84,7 @@ export const LoginForm = () => {
             error={passErr}
             id="password"
             type="password"
-            label="Password"
-            required={true}
+            label="Password *"
             style={fieldStyle}
             value={pass}
             onChange={evt => setPass(evt.target.value)}

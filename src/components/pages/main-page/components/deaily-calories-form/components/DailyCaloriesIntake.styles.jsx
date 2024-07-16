@@ -11,7 +11,7 @@ export const Container = styled.div`
   }
 `;
 
-export const DailyCal = styled.div`
+export const DailyRateCal = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -21,7 +21,7 @@ export const DailyCal = styled.div`
   }
 `;
 
-export const DailyCalTitle = styled.h4`
+export const DailyRateCalTitle = styled.h4`
   margin: 0;
   font-size: 18px;
   line-height: 140%;
@@ -32,7 +32,7 @@ export const DailyCalTitle = styled.h4`
   }
 `;
 
-export const DailyCalValue = styled.p`
+export const Value = styled.p`
   margin: 0;
   font-weight: bold;
   font-size: 48px;
@@ -49,7 +49,7 @@ export const Kcal = styled.span`
   font-size: 16px;
 `;
 
-export const RestFood = styled.div`
+export const RestrictedProd = styled.div`
   margin-bottom: 40px;
   width: 100%;
 
@@ -58,7 +58,7 @@ export const RestFood = styled.div`
   }
 `;
 
-export const RestFoodTitle = styled.p`
+export const RestrictedProdTitle = styled.p`
   margin: 0;
   font-size: 14px;
   font-weight: bold;
@@ -66,7 +66,7 @@ export const RestFoodTitle = styled.p`
   margin-bottom: 20px;
 `;
 
-export const FoodList = styled.ul`
+export const List = styled.ul`
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -75,8 +75,14 @@ export const FoodList = styled.ul`
   gap: 14px;
 `;
 
-export const Food = styled.li`
+export const Item = styled.li`
   font-size: 14px;
   letter-spacing: 0.56px;
   color: #9b9faa;
+`;
+
+export const Text = styled.p`
+font-size: 14px;
+letter-spacingL 0.56px;
+color: #9b9faa;
 `;
