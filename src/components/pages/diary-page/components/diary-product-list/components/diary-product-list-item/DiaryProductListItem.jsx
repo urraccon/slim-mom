@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import {
   Calories,
   Container,
+  DairyProdContainer,
   Item,
   Kcal,
   Name,
@@ -9,32 +10,39 @@ import {
 } from './DiaryProductListItem.styles';
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-
-const btnStyle = {
-  padding: 0,
-  minWidth: 'unset',
-  color: 'black',
-};
-
-const iconStyle = {
-  width: '17px',
-  height: '17px',
-  color: '#9B9FAA',
-  stroke: '#9B9FAA',
-  stokeWidth: 1,
-};
+import { useMediaQuery } from 'react-responsive';
 
 export const DiaryProductListItem = ({ name, calories, quantity }) => {
+  const mobile = useMediaQuery({ maxWidth: 544 });
+
+  const btnStyle = {
+    padding: 0,
+    minWidth: 'unset',
+    color: 'black',
+    height: 'fit-content',
+    marginBottom: mobile ? '5px' : '15px',
+  };
+
+  const iconStyle = {
+    width: mobile ? '17px' : '21px',
+    height: mobile ? '17px' : '21px',
+    color: '#9B9FAA',
+    stroke: '#9B9FAA',
+    stokeWidth: 1,
+  };
+
   return (
     <Item>
-      <Container>
+      <DairyProdContainer>
         <Name>{name}</Name>
-        <Calories>{calories}</Calories>
-        <Quantity>
-          {quantity}
-          <Kcal> kcal</Kcal>
-        </Quantity>
-      </Container>
+        <Container>
+          <Quantity>{quantity} g</Quantity>
+          <Calories>
+            {calories}
+            <Kcal> kcal</Kcal>
+          </Calories>
+        </Container>
+      </DairyProdContainer>
       <Button style={btnStyle}>
         <CloseIcon style={iconStyle} />
       </Button>

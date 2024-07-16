@@ -28,6 +28,12 @@ export const Section = styled.section`
     justify-content: space-between;
     margin: 80px 16px 0;
   }
+
+  @media screen and (max-width: 544px) {
+    position: fixed;
+    width: 100%;
+    background-color: white;
+  }
 `;
 
 export const TabletContainer = styled.div`

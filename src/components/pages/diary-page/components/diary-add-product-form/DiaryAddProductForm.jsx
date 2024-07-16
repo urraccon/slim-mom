@@ -19,12 +19,6 @@ const iconStyle = {
   color: 'white',
 };
 
-const btnStyle = {
-  minWidth: 'unset',
-  padding: '12.48px',
-  alignSelf: 'center',
-};
-
 const mobileBtnStyle = {
   minWidth: '176px',
 };
@@ -55,6 +49,13 @@ const inputLabelProps = {
 
 export const DiaryAddProductForm = () => {
   const mobile = useMediaQuery({ maxWidth: 544 });
+
+  const btnStyle = {
+    minWidth: 'unset',
+    padding: '12.48px',
+    alignSelf: 'center',
+    marginBottom: mobile && '60px',
+  };
 
   const [open, setOpen] = useState(false);
   const [productName, setProdName] = useState('');

@@ -9,6 +9,12 @@ export const List = styled.ul`
   padding: 0;
   margin-top: 32px;
   margin-bottom: 60px;
+
+  @media screen and (min-width: 545px) {
+    margin-top: 60px;
+    margin-bottom: 55px;
+    gap: 16px;
+  }
 `;
 
 export const Text = styled.p`
