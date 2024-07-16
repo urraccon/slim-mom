@@ -7,12 +7,12 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 export const Logo = ({ type }) => {
-  const isMobile = useMediaQuery({ maxWidth: 544 });
-  const isTablet = useMediaQuery({ maxWidth: 1024 });
-  const isDesktop = useMediaQuery({ minWidth: 1025 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
+  const touchScreen = useMediaQuery({ maxWidth: 1024 });
+  const desktop = useMediaQuery({ minWidth: 1025 });
 
   const linkStyle = {
-    alignSelf: isDesktop && 'end',
+    alignSelf: desktop && 'end',
   };
 
   return (
@@ -21,7 +21,7 @@ export const Logo = ({ type }) => {
         <>
           <NavLink to="/" style={linkStyle}>
             <Image
-              src={isTablet ? logoTablet : logoDesktop}
+              src={touchScreen ? logoTablet : logoDesktop}
               alt="slim mom logo"
             />
           </NavLink>
@@ -31,7 +31,7 @@ export const Logo = ({ type }) => {
         <>
           <NavLink to="/" style={linkStyle}>
             <Image
-              src={isMobile ? logoMobile : isTablet ? logoTablet : logoDesktop}
+              src={mobile ? logoMobile : touchScreen ? logoTablet : logoDesktop}
               alt="slim mom logo"
             />
           </NavLink>

@@ -26,6 +26,12 @@ const loginBtnStyle = {
   color: '#FC842D',
 };
 
+const inputProps = {
+  style: {
+    paddingBottom: '20px',
+  },
+};
+
 export const RegistrationForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -35,10 +41,10 @@ export const RegistrationForm = () => {
   const [passErr, setPassErr] = useState(false);
   const dispatch = useDispatch();
 
-  const isMobile = useMediaQuery({ maxWidth: 544 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
 
   const fieldStyle = {
-    width: isMobile && '100%',
+    width: mobile && '100%',
   };
 
   function handleSubmit(evt) {
@@ -90,6 +96,7 @@ export const RegistrationForm = () => {
             style={fieldStyle}
             value={name}
             onChange={evt => setName(evt.target.value)}
+            inputProps={inputProps}
           />
           <Field
             error={emailErr}
@@ -99,6 +106,7 @@ export const RegistrationForm = () => {
             style={fieldStyle}
             value={email}
             onChange={evt => setEmail(evt.target.value)}
+            inputProps={inputProps}
           />
           <Field
             error={passErr}
@@ -108,6 +116,7 @@ export const RegistrationForm = () => {
             style={fieldStyle}
             value={pass}
             onChange={evt => setPass(evt.target.value)}
+            inputProps={inputProps}
           />
         </Fields>
         <Buttons>

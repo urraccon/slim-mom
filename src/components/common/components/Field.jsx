@@ -1,5 +1,6 @@
 import { TextField } from '@mui/material';
 import PropTypes from 'prop-types';
+import { useMediaQuery } from 'react-responsive';
 
 export const Field = ({
   error,
@@ -14,6 +15,8 @@ export const Field = ({
   },
   inputLabelProps,
 }) => {
+  const mobile = useMediaQuery({ maxWidth: 544 });
+
   const defaultStyle = {
     width: '240px',
 
@@ -57,7 +60,7 @@ export const Field = ({
       letterSpacing: '0.56px',
       height: '17.6px',
       paddingTop: 0,
-      paddingBottom: '8px',
+      paddingBottom: mobile ? '8px' : '20px',
     },
 
     '& .MuiInputBase-root': {
@@ -94,6 +97,6 @@ Field.propTypes = {
   value: PropTypes.string,
   onChange: PropTypes.func,
   style: PropTypes.object,
-  inputPropa: PropTypes.object,
+  inputProps: PropTypes.object,
   inputLabelProps: PropTypes.object,
 };

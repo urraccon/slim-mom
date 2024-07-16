@@ -81,11 +81,11 @@ const RadioChecked = () => (
 );
 
 export const RadioComp = ({ value, onChange, options, id }) => {
-  const isMobile = useMediaQuery({ maxWidth: 544 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
 
   const radioGrpStyle = {
-    marginTop: isMobile ? '' : '5px',
-    borderTop: isMobile ? '' : '1px solid #e0e0e0',
+    marginTop: mobile ? '' : '5px',
+    borderTop: mobile ? '' : '1px solid #e0e0e0',
     paddingLeft: '1px',
 
     '& :last-child': {

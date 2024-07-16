@@ -14,21 +14,21 @@ const dividerStyle = {
 };
 
 export const Header = ({ type, username }) => {
-  const isMobile = useMediaQuery({ maxWidth: 544 });
-  const isTablet = useMediaQuery({ maxWidth: 1024, minWidth: 545 });
-  const isDesktop = useMediaQuery({ minWidth: 1025 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
+  const tablet = useMediaQuery({ maxWidth: 1024, minWidth: 545 });
+  const desktop = useMediaQuery({ minWidth: 1025 });
 
   return (
     <Section>
       <Container>
         <Logo type={type} />
-        {isDesktop && <Divider orientation="vertical" sx={dividerStyle} />}
+        {desktop && <Divider orientation="vertical" sx={dividerStyle} />}
         <TabletContainer>
-          {isTablet && type === 'private' && <UserInfo username={username} />}
+          {tablet && type === 'private' && <UserInfo username={username} />}
           <Navigation type={type} />
         </TabletContainer>
       </Container>
-      {(isMobile || isDesktop) && type === 'private' && (
+      {(mobile || desktop) && type === 'private' && (
         <UserInfo username={username} />
       )}
     </Section>

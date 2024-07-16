@@ -33,14 +33,14 @@ const navLinkStyle = {
 };
 
 export const Navigation = ({ type }) => {
-  const isDesktop = useMediaQuery({ minWidth: 1025 });
+  const desktop = useMediaQuery({ minWidth: 1025 });
 
   const [open, setOpen] = useState(false);
 
   return (
     <>
       {type === 'private' &&
-        (isDesktop ? (
+        (desktop ? (
           <NavMenu>
             <NavBtn>
               <NavLink

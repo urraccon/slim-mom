@@ -1,4 +1,4 @@
-export const calcDailyCalories = (height, age, curWt, desWt) => {
+export const calcDailyRateCal = (height, age, curWt, desWt) => {
   const BMR = 10 * curWt + 6.25 * height - 5 * age + 5;
 
   if (curWt > desWt) {

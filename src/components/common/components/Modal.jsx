@@ -17,7 +17,7 @@ const dailyCalReturnBtnStyle = {
 };
 
 const returnIconStyle = {
-  width: '12px',
+  width: '16px',
   color: 'black',
   stroke: 'black',
   strokeWidth: 1,
@@ -88,23 +88,23 @@ const addDiaryProdReturnBtnStyle = {
 };
 
 export const ModalComp = ({ children, type, open, onClose }) => {
-  const isMobile = useMediaQuery({ maxWidth: 544 });
-  const isTablet = useMediaQuery({ minWidth: 545 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
+  const largeScreen = useMediaQuery({ minWidth: 545 });
 
   const dailyCalModalStyle = {
-    top: isMobile && '80px',
+    top: mobile && '80px',
   };
 
   const dailyCalBackdropProps = {
     style: {
-      top: isMobile && '80px',
+      top: mobile && '80px',
     },
   };
 
   const dailyCalBoxStyle = {
     width: '100%',
-    height: isTablet ? '572px' : '100%',
-    maxWidth: isTablet ? '672px' : 'unset',
+    height: largeScreen ? '572px' : '100%',
+    maxWidth: largeScreen ? '672px' : 'unset',
     position: 'absolute',
     top: '50%',
     left: '50%',
@@ -135,7 +135,7 @@ export const ModalComp = ({ children, type, open, onClose }) => {
             ? navBackdropProps
             : type === 'daily-calories'
             ? dailyCalBackdropProps
-            : type === 'add-product-form' && addDiaryProdBackdropProps
+            : type === 'add-diary-product-form' && addDiaryProdBackdropProps
         }
         sx={
           type === 'navigation'
@@ -151,7 +151,7 @@ export const ModalComp = ({ children, type, open, onClose }) => {
               ? navBoxStyle
               : type === 'daily-calories'
               ? dailyCalBoxStyle
-              : type === 'add-product-form' && addDiaryProdBoxStyle
+              : type === 'add-diary-product-form' && addDiaryProdBoxStyle
           }
         >
           {type === 'add-diary-product-form' && (
@@ -159,7 +159,7 @@ export const ModalComp = ({ children, type, open, onClose }) => {
               <KeyboardReturnIcon sx={returnIconStyle} />
             </Button>
           )}
-          {type === 'daily-calories' && isTablet ? (
+          {type === 'daily-calories' && largeScreen ? (
             <Button sx={closeBtnStyle} onClick={onClose}>
               <CloseIcon sx={closeIconStyle} />
             </Button>

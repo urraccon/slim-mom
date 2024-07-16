@@ -23,10 +23,10 @@ const linkStyle = {
 };
 
 export const DailyCaloriesIntake = ({ dailyRateCal, restrictedProdList }) => {
-  const isTablet = useMediaQuery({ minWidth: 545 });
+  const largeScreen = useMediaQuery({ minWidth: 545 });
 
   const dividerStyle = {
-    margin: isTablet ? '32px 0 12px' : '32px 0 20px',
+    margin: largeScreen ? '32px 0 12px' : '32px 0 20px',
     borderBottom: '1px solid #e0e0e0',
     width: '100%',
   };

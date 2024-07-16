@@ -46,8 +46,8 @@ export const prodNameValidation = product => {
   return valid;
 };
 
-export const gramsValidation = grams => {
-  const valid = /^\d+$/.test(grams);
+export const quantityValidation = quantity => {
+  const valid = /^\d+$/.test(quantity);
 
   return valid;
 };

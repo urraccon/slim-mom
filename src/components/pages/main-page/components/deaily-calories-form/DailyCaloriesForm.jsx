@@ -30,13 +30,13 @@ export const DailyCaloriesForm = ({ restrictedProdList, dailyRateCal }) => {
   const [desWtErr, setDesWtErr] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const isMobile = useMediaQuery({ maxWidth: 544 });
-  const isTablet = useMediaQuery({ maxWidth: 1024 });
-  const isDesktop = useMediaQuery({ minWidth: 1025 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
+  const touchScreen = useMediaQuery({ maxWidth: 1024 });
+  const desktop = useMediaQuery({ minWidth: 1025 });
 
   const btnStyle = {
-    alignSelf: isMobile ? 'center' : isTablet ? 'start' : 'end',
-    left: isDesktop && '23px',
+    alignSelf: mobile ? 'center' : touchScreen ? 'start' : 'end',
+    left: desktop && '23px',
   };
 
   function handleSubmit(evt) {

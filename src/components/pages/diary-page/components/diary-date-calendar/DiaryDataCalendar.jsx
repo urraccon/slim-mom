@@ -21,12 +21,12 @@ const iconStyle = {
 };
 
 export const DiaryDateCalendar = ({ date, updateDate }) => {
-  const isTablet = useMediaQuery({ minWidth: 545 });
-  const isMobile = useMediaQuery({ maxWidth: 544 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
+  const largeScreen = useMediaQuery({ minWidth: 545 });
 
   const datePickStyle = {
-    width: isMobile ? '288px' : '320px',
-    maxWidth: isMobile ? '320px' : 'unset',
+    width: mobile ? '288px' : '320px',
+    maxWidth: mobile ? '320px' : 'unset',
 
     '& .MuiButtonBase-root.Mui-selected': {
       backgroundColor: '#FC842D',
@@ -45,7 +45,7 @@ export const DiaryDateCalendar = ({ date, updateDate }) => {
     color: '#9B9FAA',
     padding: 0,
     minWidth: 'unset',
-    paddingBottom: isTablet && '4px',
+    paddingBottom: largeScreen && '4px',
     position: 'relative',
   };
 

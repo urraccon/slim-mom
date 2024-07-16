@@ -6,8 +6,8 @@ import { ButtonComp } from 'components/common/components/Button';
 import { ModalComp } from 'components/common/components/Modal';
 import AddIcon from '@mui/icons-material/Add';
 import {
-  gramsValidation,
   prodNameValidation,
+  quantityValidation,
 } from 'components/common/services/validation';
 import dayjs from 'dayjs';
 import { useDispatch } from 'react-redux';
@@ -33,11 +33,11 @@ const mobileFieldStyle = {
   width: '100%',
 };
 
-const gramsFieldStyle = {
+const quantityFieldStyle = {
   width: '106px',
 };
 
-const gramsInputProps = {
+const inputProps = {
   autocomplet: 'off',
 
   style: {
@@ -46,7 +46,7 @@ const gramsInputProps = {
   },
 };
 
-const gramsInputLabelProps = {
+const inputLabelProps = {
   style: {
     left: 'unset',
     right: 0,
@@ -54,39 +54,39 @@ const gramsInputLabelProps = {
 };
 
 export const DiaryAddProductForm = () => {
-  const isMobile = useMediaQuery({ maxWidth: 544 });
+  const mobile = useMediaQuery({ maxWidth: 544 });
 
   const [open, setOpen] = useState(false);
-  const [product, setProduct] = useState('');
-  const [grams, setGrams] = useState('');
-  const [prodErr, setProdErr] = useState(null);
-  const [gramsErr, setGramsErr] = useState(null);
+  const [productName, setProdName] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [prodNameErr, setProdNameErr] = useState(null);
+  const [quantityErr, setQuantityErr] = useState(null);
   const dispatch = useDispatch();
 
   function handleSubmit(evt) {
     evt.preventDefault();
 
-    const prodNameValid = prodNameValidation(product);
-    const gramsValid = gramsValidation(grams);
+    const prodNameValid = prodNameValidation(productName);
+    const quantityValid = quantityValidation(quantity);
 
     if (!prodNameValid) {
-      setProdErr(true);
+      setProdNameErr(true);
     } else {
-      setProdErr(false);
+      setProdNameErr(false);
     }
 
-    if (!gramsValid) {
-      setGramsErr(true);
+    if (!quantityValid) {
+      setQuantityErr(true);
     } else {
-      setGramsErr(false);
+      setQuantityErr(false);
     }
 
-    if (prodNameValid && gramsValid) {
+    if (prodNameValid && quantityValid) {
       const now = dayjs();
 
       const diaryProductDetails = {
-        product,
-        grams,
+        productName,
+        quantity,
         now,
       };
 
@@ -96,7 +96,7 @@ export const DiaryAddProductForm = () => {
 
   return (
     <>
-      {isMobile ? (
+      {mobile ? (
         <>
           <ButtonComp onClick={() => setOpen(true)} style={btnStyle}>
             <AddIcon sx={iconStyle} />
@@ -109,19 +109,19 @@ export const DiaryAddProductForm = () => {
             <Form onSubmit={handleSubmit}>
               <Fields>
                 <Field
-                  error={prodErr}
+                  error={prodNameErr}
                   id="product"
                   label="Enter product name"
-                  value={product}
-                  onChange={evt => setProduct(evt.target.value)}
+                  value={productName}
+                  onChange={evt => setProdName(evt.target.value)}
                   style={mobileFieldStyle}
                 />
                 <Field
-                  error={gramsErr}
-                  id="grams"
+                  error={quantityErr}
+                  id="quantity"
                   label="Grams"
-                  value={grams}
-                  onChange={evt => setGrams(evt.target.value)}
+                  value={quantity}
+                  onChange={evt => setQuantity(evt.target.value)}
                   style={mobileFieldStyle}
                 />
               </Fields>
@@ -135,21 +135,21 @@ export const DiaryAddProductForm = () => {
         <Form onSubmit={handleSubmit}>
           <Fields>
             <Field
-              error={prodErr}
+              error={prodNameErr}
               id="product"
               label="Enter product name"
-              value={product}
-              onChange={evt => setProduct(evt.target.value)}
+              value={productName}
+              onChange={evt => setProdName(evt.target.value)}
             />
             <Field
-              error={gramsErr}
-              id="grams"
+              error={quantityErr}
+              id="quantity"
               label="Grams"
-              value={grams}
-              onChange={evt => setGrams(evt.target.value)}
-              style={gramsFieldStyle}
-              inputProps={gramsInputProps}
-              inputLabelProps={gramsInputLabelProps}
+              value={quantity}
+              onChange={evt => setQuantity(evt.target.value)}
+              style={quantityFieldStyle}
+              inputProps={inputProps}
+              inputLabelProps={inputLabelProps}
             />
           </Fields>
           <ButtonComp type="submit" style={btnStyle}>

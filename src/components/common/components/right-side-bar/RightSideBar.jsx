@@ -19,7 +19,6 @@ export const RightSideBar = ({
   const formattedDate = dayjs(date).format('DD.MM.YYYY');
   const left = dailyRateCal - consumedCal;
   const normalPercentages = Math.round((consumedCal / dailyRateCal) * 100);
-  console.log(normalPercentages);
 
   return (
     <StatsContainer>
