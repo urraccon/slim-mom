@@ -1,32 +1,75 @@
 import styled from 'styled-components';
 
-export const FormContainer = styled.div`
-  position: absolute;
-  top: 80px;
-  display: flex;
-  flex-direction: column;
-  gap: 55px;
-  padding: 40px 20px 0;
-  align-items: center;
+export const Container = styled.div`
   width: 100%;
+  position: absolute;
+  overflow: auto;
+  display: flex;
 
-  @media screen and (min-width: 545px) {
-    align-items: start;
-    padding: 160px 32px 0;
+  &::-webkit-scrollbar {
+    width: 6px;
   }
 
-  @media screen and (min-width: 1025px) {
-    padding: 226px 16px 0;
+  &::-webkit-scrollbar-track {
+    background: #f0f1f3;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #264061;
+  }
+
+  @media screen and (max-width: 1279px) {
+    top: 81.6px;
+    height: calc(100vh - 81.6px);
+  }
+
+  @media screen and (min-width: 1280px) {
+    top: 154px;
+    height: calc(100vh - 154px);
   }
 `;
 
-export const FormTitle = styled.h4`
+export const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+  margin: auto;
+
+  @media screen and (max-width: 767px) {
+    align-items: center;
+    padding-top: 40px;
+    width: 87.5%;
+    max-width: 450px;
+    height: 566.4px;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    padding-top: 160px;
+    width: 91.6%;
+    height: 942.4px;
+    max-width: 850px;
+  }
+
+  @media screen and (min-width: 768px) {
+    align-items: start;
+  }
+
+  @media screen and (min-width: 1280px) {
+    padding-top: 140px;
+    height: 696px;
+    width: 97.5%;
+    max-width: 1440px;
+  }
+`;
+
+export const Title = styled.h4`
   margin: 0;
   font-size: 14px;
   font-weight: bold;
-  letter-spacing: 0.56px;
+  letter-spacing: 0.04em;
   color: #fc842d;
   text-transform: uppercase;
+  line-height: 1.2em;
 `;
 
 export const Form = styled.form`
@@ -34,21 +77,32 @@ export const Form = styled.form`
   flex-direction: column;
   gap: 60px;
   width: 100%;
+
+  @media screen and (min-width: 768px) {
+    align-items: start;
+  }
 `;
 
 export const Fields = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
+
+  @media screen and (min-width: 768px) {
+    width: 240px;
+  }
 `;
 
 export const Buttons = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  align-items: center;
 
-  @media screen and (min-width: 545px) {
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 768px) {
     align-items: start;
     flex-direction: row;
     gap: 32px;

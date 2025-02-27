@@ -1,8 +1,10 @@
-import PropTypes from 'prop-types';
-import { List, Text } from './DiartyProductList.styles';
-import { DiaryProductListItem } from './components/diary-product-list-item/DiaryProductListItem';
+import { Container, List, Message } from './DiartyProductList.styles';
+import { DiaryProductListItem } from './components/DiaryProductListItem';
+// import { useSelector } from 'react-redux';
+// import { selectDiaryProdList } from 'components/redux/diary/selectors';
 
-export const DiaryProductList = ({ diaryProdList }) => {
+export const DiaryProductList = () => {
+  // const diaryProdList = useSelector(selectDiaryProdList);
   const diaryProdListMockup = [
     {
       product: {
@@ -39,33 +41,40 @@ export const DiaryProductList = ({ diaryProdList }) => {
       },
       quantity: 100,
     },
+    {
+      product: {
+        name: 'Potato',
+        calories: 380,
+      },
+      quantity: 100,
+    },
   ];
 
   return (
-    <List>
-      {diaryProdListMockup.length === 0 ? (
-        <Text>Your diary will be displayed here</Text>
-      ) : (
-        diaryProdListMockup.map(diaryProduct => {
-          const name = diaryProduct.product.name;
-          const calories = diaryProduct.product.calories;
-          const quantity = diaryProduct.quantity;
-          const key = diaryProdListMockup.indexOf(diaryProduct);
+    <>
+      <Container>
+        <List>
+          {diaryProdListMockup.length === 0 ? (
+            <Message>Your diary will be displayed here</Message>
+          ) : (
+            diaryProdListMockup.map(diaryProduct => {
+              const name = diaryProduct.product.name;
+              const calories = diaryProduct.product.calories;
+              const quantity = diaryProduct.quantity;
+              const key = diaryProdListMockup.indexOf(diaryProduct);
 
-          return (
-            <DiaryProductListItem
-              name={name}
-              calories={calories}
-              quantity={quantity}
-              key={key}
-            />
-          );
-        })
-      )}
-    </List>
+              return (
+                <DiaryProductListItem
+                  name={name}
+                  calories={calories}
+                  quantity={quantity}
+                  key={key}
+                />
+              );
+            })
+          )}
+        </List>
+      </Container>
+    </>
   );
-};
-
-DiaryProductList.propTypes = {
-  diaryProdList: PropTypes.array,
 };

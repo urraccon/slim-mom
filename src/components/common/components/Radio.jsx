@@ -9,19 +9,33 @@ import {
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
 
+const formStyle = largeScreens => ({
+  maxWidth: largeScreens ? 'none' : '85.7%',
+});
+
 const labelStyle = {
-  fontSize: '14px',
-  fontWeight: 700,
-  letterSpacing: '0.56px',
+  fontSize: 14,
+  fontWeight: 'bold',
+  letterSpacing: '0.04em',
   color: '#9B9FAA',
+  lineHeight: 1.2,
 
   '&.Mui-focused': {
     color: '#9B9FAA',
   },
 };
 
-const radioStyle = {
-  marginRight: '24px',
+const radioGrpStyle = largeScreens => ({
+  marginTop: largeScreens ? '20px' : '8px',
+  borderTop: largeScreens ? '1px solid #e0e0e0' : 'none',
+
+  '& :last-child': {
+    marginRight: 0,
+  },
+});
+
+const radioStyle = largeScreens => ({
+  margin: largeScreens ? '8px 11.7% 0 0' : '0 10.05% 0 0',
 
   '&:hover svg': {
     color: '#fc842d',
@@ -37,37 +51,28 @@ const radioStyle = {
 
   '& .Mui-checked + .MuiFormControlLabel-label': {
     color: '#FC842D',
-    fontWeight: 700,
+    fontWeight: 'bold',
   },
 
   '& .MuiFormControlLabel-label': {
     color: '#9B9FAA',
+    marginLeft: largeScreens ? '4px' : '8px',
+    fontSize: 14,
+    lineHeight: 1.15,
+    width: 13,
   },
 
   '& .MuiRadio-root': {
-    padding: '8px',
+    padding: 0,
   },
-};
+});
 
-const formStyle = {
-  maxWidth: '240px',
+const iconStyle = {
+  fontSize: 20,
 };
-
-const RadioIcon = () => (
-  <SvgIcon>
-    <circle
-      cx="12"
-      cy="12"
-      r="10"
-      stroke="#e0e0e0"
-      strokeWidth="1"
-      fill="none"
-    />
-  </SvgIcon>
-);
 
 const RadioChecked = () => (
-  <SvgIcon>
+  <SvgIcon sx={iconStyle}>
     <circle
       cx="12"
       cy="12"
@@ -80,34 +85,46 @@ const RadioChecked = () => (
   </SvgIcon>
 );
 
+const RadioIcon = () => (
+  <SvgIcon sx={iconStyle}>
+    <circle
+      cx="12"
+      cy="12"
+      r="10"
+      stroke="#e0e0e0"
+      strokeWidth="1"
+      fill="none"
+    />
+  </SvgIcon>
+);
+
 export const RadioComp = ({ value, onChange, options, id }) => {
-  const mobile = useMediaQuery({ maxWidth: 544 });
-
-  const radioGrpStyle = {
-    marginTop: mobile ? '' : '5px',
-    borderTop: mobile ? '' : '1px solid #e0e0e0',
-    paddingLeft: '1px',
-
-    '& :last-child': {
-      marginRight: '0',
-    },
-  };
+  const largeScreens = useMediaQuery({ minWidth: 768 });
 
   return (
-    <FormControl sx={formStyle}>
+    <FormControl sx={formStyle(largeScreens)}>
       <FormLabel sx={labelStyle} id={id}>
         Blood Type *
       </FormLabel>
-      <RadioGroup sx={radioGrpStyle} value={value} onChange={onChange} row>
+      <RadioGroup
+        sx={radioGrpStyle(largeScreens)}
+        value={value}
+        onChange={onChange}
+        row
+      >
         {options?.map(option => (
           <FormControlLabel
             key={option}
             value={option}
             control={
-              <Radio checkedIcon={<RadioChecked />} icon={<RadioIcon />} />
+              <Radio
+                disableRipple
+                checkedIcon={<RadioChecked />}
+                icon={<RadioIcon />}
+              />
             }
             label={option}
-            sx={radioStyle}
+            sx={radioStyle(largeScreens)}
           />
         ))}
       </RadioGroup>

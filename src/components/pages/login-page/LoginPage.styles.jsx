@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import desktopBg from './images/desktop-login-bg.jpg';
-import tabletBg from './images/tablet-login-bg.jpg';
+import desktopBg from './images/login-page-desktop-bg.jpg';
+import tabletBg from './images/login-page-tablet-bg.jpg';
 
 export const Section = styled.section`
   width: 100vw;
@@ -8,15 +8,19 @@ export const Section = styled.section`
   position: absolute;
   top: 0;
   z-index: -1;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  overflow: hidden;
 
-  @media screen and (min-width: 545px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
     background-image: url(${tabletBg});
   }
 
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 768px) {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  @media screen and (min-width: 1280px) {
     background-image: url(${desktopBg});
   }
 `;

@@ -3,77 +3,89 @@ import {
   Container,
   Item,
   List,
-  TextPiece,
-  StatsContainer,
   Title,
-  Text,
+  Message,
+  Box,
+  TextWrapper,
+  Content,
+  Block,
+  Wrapper,
 } from './RightSideBar.styles';
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+import {
+  selectDailyRateCal,
+  selectRestrictedProdList,
+} from 'components/redux/diary/selectors';
 
-export const RightSideBar = ({
-  dailyRateCal,
-  consumedCal,
-  date,
-  restrictedProdList,
-}) => {
+export const RightSideBar = () => {
+  const restrictedProdList = useSelector(selectRestrictedProdList);
+  const dailyRateCal = useSelector(selectDailyRateCal);
+
+  const date = dayjs();
   const formattedDate = dayjs(date).format('DD.MM.YYYY');
-  const left = dailyRateCal - consumedCal;
-  const normalPercentages = Math.round((consumedCal / dailyRateCal) * 100);
+  const consumedCal = 0;
+  const leftCal = dailyRateCal - consumedCal;
+  const calIntakePercentage = Math.round((consumedCal / dailyRateCal) * 100);
 
   return (
-    <StatsContainer>
-      <Container>
-        <Title>
-          Summary for <TextPiece>{formattedDate}</TextPiece>
-        </Title>
-        <List>
-          <Item>
-            <TextPiece>Left</TextPiece>
-            <TextPiece>{left === 0 ? '000' : left} kcal</TextPiece>
-          </Item>
-          <Item>
-            <TextPiece>Consumed</TextPiece>
-            <TextPiece>
-              {consumedCal === null ? '000' : consumedCal} kcal
-            </TextPiece>
-          </Item>
-          <Item>
-            <TextPiece>Daily rate</TextPiece>
-            <TextPiece>
-              {dailyRateCal === null ? '000' : dailyRateCal} kcal
-            </TextPiece>
-          </Item>
-          <Item>
-            <TextPiece>n% of normal</TextPiece>
-            <TextPiece>
-              {isNaN(normalPercentages) === true
-                ? '000 kcal'
-                : `${normalPercentages}%`}
-            </TextPiece>
-          </Item>
-        </List>
-      </Container>
-      <Container>
-        <Title>Food not recommended</Title>
-        <List>
-          {restrictedProdList?.length === 0 ? (
-            <Text>Your diet will be displayed here</Text>
-          ) : (
-            restrictedProdList?.map(restrictedProduct => (
-              <Item key={restrictedProdList.indexOf(restrictedProduct)}>
-                {restrictedProduct}
+    <Container>
+      <Content>
+        <Wrapper>
+          <Block>
+            <Title>Summary for {formattedDate}</Title>
+            <List>
+              <Item>
+                <Box>
+                  <TextWrapper>Left</TextWrapper>
+                  <TextWrapper>
+                    {leftCal === 0 ? '000' : leftCal} kcal
+                  </TextWrapper>
+                </Box>
               </Item>
-            ))
-          )}
-        </List>
-      </Container>
-    </StatsContainer>
+              <Item>
+                <Box>
+                  <TextWrapper>Consumed</TextWrapper>
+                  <TextWrapper>
+                    {consumedCal === null ? '000' : consumedCal} kcal
+                  </TextWrapper>
+                </Box>
+              </Item>
+              <Item>
+                <Box>
+                  <TextWrapper>Daily rate</TextWrapper>
+                  <TextWrapper>
+                    {dailyRateCal === null ? '000' : dailyRateCal} kcal
+                  </TextWrapper>
+                </Box>
+              </Item>
+              <Item>
+                <Box>
+                  <TextWrapper>n% of normal</TextWrapper>
+                  <TextWrapper>
+                    {isNaN(calIntakePercentage) === true
+                      ? '000 kcal'
+                      : `${calIntakePercentage}%`}
+                  </TextWrapper>
+                </Box>
+              </Item>
+            </List>
+          </Block>
+          <Block>
+            <Title>Food not recommended</Title>
+            <List>
+              {restrictedProdList?.length === 0 ? (
+                <Message>Your diet will be displayed here</Message>
+              ) : (
+                restrictedProdList?.map(restrictedProduct => (
+                  <Item key={restrictedProdList.indexOf(restrictedProduct)}>
+                    <TextWrapper>{restrictedProduct}</TextWrapper>
+                  </Item>
+                ))
+              )}
+            </List>
+          </Block>
+        </Wrapper>
+      </Content>
+    </Container>
   );
-};
-
-RightSideBar.propTypes = {
-  dailyRateCal: PropTypes.number,
-  consumedCal: PropTypes.number,
-  date: PropTypes.object,
-  restrictedProdList: PropTypes.array,
 };

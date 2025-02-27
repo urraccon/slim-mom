@@ -1,37 +1,71 @@
 import styled from 'styled-components';
 
-export const Form = styled.form`
-  padding: 80px 20px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 60px;
-  align-items: center;
+export const Container = styled.div`
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  height: calc(100% - 40px);
+  overflow: auto;
+  background-color: white;
 
-  @media screen and (min-width: 545px) {
-    padding: 60px 0 0;
-    flex-direction: row;
-    align-items: end;
-    gap: 87px;
+  &::-webkit-scrollbar {
+    width: 6px;
   }
 
-  @media screen and (min-width: 1025px) {
+  &::-webkit-scrollbar-track {
+    background: #f0f1f3;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #264061;
+  }
+`;
+
+export const Form = styled.form`
+  display: flex;
+
+  @media screen and (max-width: 767px) {
+    min-height: 446.4px;
+    height: calc(100vh - 201.6px);
+    flex-direction: column;
     gap: 60px;
+    align-items: center;
+    width: 87.28%;
+    margin: 80px auto 0;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    gap: 87px;
+    margin-right: 88px;
+  }
+
+  @media screen and (min-width: 768px) {
+    align-items: end;
+  }
+
+  @media screen and (min-width: 1280px) {
+    gap: 60px;
+    margin-right: 88px;
   }
 `;
 
 export const Fields = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-  width: 100%;
 
-  @media screen and (min-width: 545px) {
-    flex-direction: row;
-    gap: 22px;
-    width: unset;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    gap: 32px;
+    width: 100%;
+    max-width: 450px;
   }
 
-  @media screen and (min-width: 1025px) {
+  @media screen and (min-width: 768px) and (max-width: 1279px) {
+    gap: 22px;
+    width: 70.5%;
+  }
+
+  @media screen and (min-width: 1280px) {
     gap: 48px;
+    width: 73.85%;
   }
 `;

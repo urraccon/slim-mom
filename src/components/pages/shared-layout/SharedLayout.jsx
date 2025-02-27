@@ -1,49 +1,38 @@
 import {
   Suspense,
-  useEffect,
+  // useEffect,
   //  useState
 } from 'react';
-import { Header } from './components/header/Header';
+import { Header } from './components/Header';
 import { Main } from './SharedLayout.styles';
 import { Loader } from 'components/common/components/Loader';
 import { Outlet } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { startLoading, stopLoading } from 'components/redux/loading/actions';
-import {
-  selectAuthStatus,
-  // selectLoggedIn,
-  selectUserName,
-} from 'components/redux/auth/selectors';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { startLoading, stopLoading } from 'components/redux/loading/actions';
+// import {
+//   selectAuthStatus,
+//   selectLoggedIn,
+//   selectUserName,
+// } from 'components/redux/auth/selectors';
 
 export const SharedLayout = () => {
-  // const [type, setType] = useState('public');
+  // const status = useSelector(selectAuthStatus);
 
-  const username = useSelector(selectUserName);
-  // const loggedIn = useSelector(selectLoggedIn);
-  const status = useSelector(selectAuthStatus);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
-  //   if (loggedIn) {
-  //     setType('private');
-  //   } else {
-  //     setType('public');
-  //   }
-  // }, [loggedIn]);
+  //     if (status === 'loading') {
+  //       dispatch(startLoading());
+  //     }
 
-  useEffect(() => {
-    if (status === 'loading') {
-      dispatch(startLoading());
-    }
-
-    if (status !== 'loading') {
-      dispatch(stopLoading());
-    }
-  }, [status, dispatch]);
+  //     if (status !== 'loading') {
+  //       dispatch(stopLoading());
+  //     }
+  //   }, [status, dispatch]);
 
   return (
     <Main>
-      <Header type={'private'} username={username} />
+      <Header />
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>

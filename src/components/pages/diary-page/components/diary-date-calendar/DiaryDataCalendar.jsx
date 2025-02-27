@@ -1,5 +1,4 @@
 import { Container, Date } from './DiaryDateCalendar.styles';
-import PropTypes from 'prop-types';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { DateCalendar, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -15,42 +14,74 @@ dayjs.updateLocale('en', {
 });
 
 const iconStyle = {
-  color: '#9B9FAA',
-  width: '20px',
-  height: '20px',
+  fontSize: 20,
 };
 
-export const DiaryDateCalendar = ({ date, updateDate }) => {
-  const mobile = useMediaQuery({ maxWidth: 544 });
-  const largeScreen = useMediaQuery({ minWidth: 545 });
+const dateCalStyle = {
+  '& .MuiPickersDay-root, & .MuiPickersYear-yearButton': {
+    transition: 'background-color 0.2s ease-in-out',
+  },
 
-  const datePickStyle = {
-    width: mobile ? '288px' : '320px',
-    maxWidth: mobile ? '320px' : 'unset',
-
-    '& .MuiButtonBase-root.Mui-selected': {
-      backgroundColor: '#FC842D',
+  '& .MuiButtonBase-root.MuiPickersDay-root.Mui-selected:hover, & .MuiPickersYear-root .MuiPickersYear-yearButton.Mui-selected:hover':
+    {
+      backgroundColor: '#e65a24',
     },
 
-    '& .MuiButtonBase-root.Mui-selected:hover': {
-      backgroundColor: '#f77211',
+  '& .MuiPickersYear-root .MuiPickersYear-yearButton.Mui-selected, & .MuiButtonBase-root.MuiPickersDay-root.Mui-selected':
+    {
+      backgroundColor: '#fc842d',
     },
 
-    '& .MuiButtonBase-root:hover': {
-      backgroundColor: '#fbeee5',
-    },
-  };
+  '& .MuiPickersYear-yearButton:hover, & .MuiPickersDay-root:hover': {
+    backgroundColor: 'rgba(252, 132, 45, 0.15)',
+  },
 
-  const btnStyle = {
-    color: '#9B9FAA',
-    padding: 0,
-    minWidth: 'unset',
-    paddingBottom: largeScreen && '4px',
-    position: 'relative',
-  };
+  '& .MuiPickersDay-root:focus, & .MuiPickersYear-yearButton:focus': {
+    backgroundColor: 'rgba(252, 132, 45, 0.3)',
+  },
+};
+
+const btnStyle = largeScreens => ({
+  color: '#9B9FAA',
+  padding: 0,
+  minWidth: 0,
+  borderRadius: 0,
+  transition: 'background-color 0.3s ease',
+  height: 'fit-content',
+  marginBottom: largeScreens ? '4px' : 0,
+
+  '&:hover': {
+    backgroundColor: '#f0f0f0',
+  },
+
+  '&:active': {
+    backgroundColor: '#e0e0e0',
+  },
+});
+
+const paperStyle = {
+  overflow: 'auto',
+};
+
+const dateCalProps = {
+  day: {
+    disableRipple: true,
+  },
+
+  yearButton: {
+    disableRipple: true,
+  },
+};
+
+export const DiaryDateCalendar = () => {
+  const largeScreens = useMediaQuery({ minWidth: 768 });
+
+  const now = dayjs();
 
   const [open, setOpen] = useState(false);
   const [target, setTarget] = useState(null);
+  const [date, setDate] = useState(now);
+
   const formattedDate = dayjs(date).format('DD.MM.YYYY');
 
   function handleClick(evt) {
@@ -64,14 +95,14 @@ export const DiaryDateCalendar = ({ date, updateDate }) => {
 
     if (oldDay !== newDay) {
       setOpen(false);
-      updateDate(newDate);
+      setDate(newDate);
     }
   }
 
   return (
     <Container>
       <Date>{formattedDate}</Date>
-      <Button onClick={handleClick} sx={btnStyle}>
+      <Button onClick={handleClick} sx={btnStyle(largeScreens)} disableRipple>
         <DateRangeIcon sx={iconStyle} />
       </Button>
       <Popover
@@ -88,12 +119,13 @@ export const DiaryDateCalendar = ({ date, updateDate }) => {
         }}
       >
         <ClickAwayListener onClickAway={() => setOpen(false)}>
-          <Paper>
+          <Paper sx={paperStyle}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DateCalendar
                 value={date}
                 onChange={handleChange}
-                sx={datePickStyle}
+                sx={dateCalStyle}
+                slotProps={dateCalProps}
               />
             </LocalizationProvider>
           </Paper>
@@ -101,9 +133,4 @@ export const DiaryDateCalendar = ({ date, updateDate }) => {
       </Popover>
     </Container>
   );
-};
-
-DiaryDateCalendar.propTypes = {
-  date: PropTypes.object,
-  updateDate: PropTypes.func,
 };

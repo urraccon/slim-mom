@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { Box, Modal } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useMediaQuery } from 'react-responsive';
@@ -6,48 +5,14 @@ import { Button } from '@mui/material';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import CloseIcon from '@mui/icons-material/Close';
 
-const dailyCalReturnBtnStyle = {
-  width: '100%',
-  height: '40px',
-  borderRadius: 0,
-  backgroundColor: '#EFF1F3',
-  color: '#9B9FAA',
-  justifyContent: 'start',
-  paddingLeft: '20px',
-};
-
-const returnIconStyle = {
-  width: '16px',
-  color: 'black',
-  stroke: 'black',
-  strokeWidth: 1,
-};
-
-const closeBtnStyle = {
-  position: 'absolute',
-  top: '20px',
-  right: '20px',
-  padding: 0,
-  minWidth: 'unset',
-  color: 'black',
-};
-
-const closeIconStyle = {
-  color: 'black',
-  height: '20px',
-  width: '20px',
-};
-
 const navModalStyle = {
   height: 'calc(100% - 80px)',
-  top: '80px',
+  top: 80,
 };
 
-const navBackdropProps = {
-  style: {
-    height: 'calc(100% - 80px)',
-    top: '80px',
-  },
+const navBackdropStyle = {
+  height: 'calc(100% - 80px)',
+  top: 80,
 };
 
 const navBoxStyle = {
@@ -55,124 +20,232 @@ const navBoxStyle = {
   height: '100%',
   position: 'absolute',
   backgroundColor: '#264061',
-};
+  overflow: 'auto',
 
-const addDiaryProdModalStyle = {
-  height: 'calc(100% - 120px)',
-  top: '120px',
-};
+  '&::-webkit-scrollbar': {
+    width: 6,
+  },
 
-const addDiaryProdBackdropProps = {
-  style: {
-    height: 'calc(100% - 120px)',
-    top: '120px',
+  '&::-webkit-scrollbar-track': {
+    background: '#f0f1f3',
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    background: '#d1d6db',
   },
 };
 
-const addDiaryProdBoxStyle = {
+const addProdModalStyle = {
+  height: 'calc(100% - 81.6px)',
+  top: 81.6,
+};
+
+const addProdBackdropStyle = {
+  backgroundColor: 'transparent',
+};
+
+const addProdBoxStyle = {
   width: '100%',
   height: '100%',
   position: 'absolute',
-  backgroundColor: 'white',
+  backgroundColor: 'transparent',
 };
 
-const addDiaryProdReturnBtnStyle = {
-  width: '50%',
-  height: '40px',
-  borderRadius: 0,
-  color: '#9B9FAA',
-  justifyContent: 'start',
-  paddingLeft: '20px',
+const dailyCalModalStyle = mobile => ({
+  top: mobile ? 81.6 : 0,
+});
+
+const dailyCalBackdropStyle = mobile => ({
+  backgroundColor: mobile ? 'transparent' : 'rgba(0, 0, 0, 0.5)',
+});
+
+const dailyCalBoxStyle = mobile => ({
+  width: '100%',
+  height: '100%',
+  maxHeight: mobile ? 'none' : 572,
+  maxWidth: mobile ? 'none' : 672,
   position: 'absolute',
-  top: '-40px',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  backgroundColor: 'white',
+  overflow: mobile ? 'hidden' : 'auto',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+
+  '&::-webkit-scrollbar': {
+    width: 6,
+  },
+
+  '&::-webkit-scollbar-track': {
+    background: '#f0f1f3',
+  },
+
+  '&::-webkit-scrollbar-thumb': {
+    background: '#264061',
+  },
+});
+
+const dailyCalReturnBtnStyle = maxMobileContentSize => ({
+  width: '87.5%',
+  minHeight: 40,
+  borderRadius: 0,
+  backgroundColor: '#EFF1F3',
+  justifyContent: 'start',
+  padding: maxMobileContentSize ? '0 6.25%' : '0 calc((100% - 450px) / 2)',
+  maxWidth: 450,
+  boxSizing: 'content-box',
+  transition: 'background 0.3s ease',
+
+  '&:hover': {
+    backgroundColor: '#dde0e3',
+  },
+
+  '&:active': {
+    backgroundColor: '#c6cace',
+  },
+});
+
+const returnBtnBoxStyle = {
+  height: 40,
+};
+
+const addProdReturnBtnStyle = maxMobileContentSize => ({
+  width: '40.62%',
+  height: 'inherit',
+  borderRadius: 0,
+  color: 'black',
+  justifyContent: 'start',
+  padding: maxMobileContentSize
+    ? '0 0 0 6.25%'
+    : '0 0 0 calc((100% - 450px) / 2)',
+  transition: 'background-color 0.3s ease',
+  position: 'fixed',
+
+  '&:hover': {
+    backgroundColor: '#dde0e3',
+  },
+
+  '&:active': {
+    backgroundColor: '#c6cace',
+  },
+});
+
+const returnIconStyle = {
+  fontSize: 15,
+  stroke: 'black',
+  strokeWidth: 1,
+};
+
+const closeBtnStyle = {
+  position: 'absolute',
+  top: 20,
+  right: 20,
+  padding: 0,
+  minWidth: 0,
+  borderRadius: 0,
+  transition: 'background-color 0.3s ease',
+
+  '&:hover': {
+    backgroundColor: '#f0f0f0',
+  },
+
+  '&:active': {
+    backgroundColor: '#e0e0e0',
+  },
+};
+
+const closeIconStyle = {
+  color: 'black',
+  fontSize: 20,
 };
 
 export const ModalComp = ({ children, type, open, onClose }) => {
-  const mobile = useMediaQuery({ maxWidth: 544 });
-  const largeScreen = useMediaQuery({ minWidth: 545 });
-
-  const dailyCalModalStyle = {
-    top: mobile && '80px',
-  };
-
-  const dailyCalBackdropProps = {
-    style: {
-      top: mobile && '80px',
-    },
-  };
-
-  const dailyCalBoxStyle = {
-    width: '100%',
-    height: largeScreen ? '572px' : '100%',
-    maxWidth: largeScreen ? '672px' : 'unset',
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    backgroundColor: 'white',
-  };
-
-  useEffect(() => {
-    document.addEventListener('keydown', keyHandler);
-
-    return () => {
-      document.removeEventListener('keydown', keyHandler);
-    };
-  });
-
-  const keyHandler = evt => {
-    if (evt.key === 'Escape') {
-    }
-  };
+  const mobile = useMediaQuery({ maxWidth: 767 });
+  const maxMobileContentSize = useMediaQuery({ maxWidth: 514 });
 
   return (
     <>
-      <Modal
-        open={open}
-        onClose={onClose}
-        BackdropProps={
-          type === 'navigation'
-            ? navBackdropProps
-            : type === 'daily-calories'
-            ? dailyCalBackdropProps
-            : type === 'add-diary-product-form' && addDiaryProdBackdropProps
-        }
-        sx={
-          type === 'navigation'
-            ? navModalStyle
-            : type === 'daily-calories'
-            ? dailyCalModalStyle
-            : type === 'add-diary-product-form' && addDiaryProdModalStyle
-        }
-      >
-        <Box
-          sx={
-            type === 'navigation'
-              ? navBoxStyle
-              : type === 'daily-calories'
-              ? dailyCalBoxStyle
-              : type === 'add-diary-product-form' && addDiaryProdBoxStyle
-          }
-        >
-          {type === 'add-diary-product-form' && (
-            <Button onClick={onClose} sx={addDiaryProdReturnBtnStyle}>
-              <KeyboardReturnIcon sx={returnIconStyle} />
-            </Button>
-          )}
-          {type === 'daily-calories' && largeScreen ? (
-            <Button sx={closeBtnStyle} onClick={onClose}>
-              <CloseIcon sx={closeIconStyle} />
-            </Button>
-          ) : (
-            type === 'daily-calories' && (
-              <Button sx={dailyCalReturnBtnStyle} onClick={onClose}>
-                <KeyboardReturnIcon sx={returnIconStyle} />
-              </Button>
-            )
-          )}
-          {children}
-        </Box>
-      </Modal>
+      {type === 'navigation' && (
+        <>
+          <Modal
+            open={open}
+            onClose={onClose}
+            slotProps={{
+              backdrop: {
+                sx: navBackdropStyle,
+              },
+            }}
+            sx={navModalStyle}
+          >
+            <Box sx={navBoxStyle}>{children}</Box>
+          </Modal>
+        </>
+      )}
+      {type === 'daily-calories' && (
+        <>
+          <Modal
+            open={open}
+            onClose={onClose}
+            slotProps={{
+              backdrop: {
+                sx: dailyCalBackdropStyle(mobile),
+              },
+            }}
+            sx={dailyCalModalStyle(mobile)}
+          >
+            <Box sx={dailyCalBoxStyle(mobile)}>
+              {mobile ? (
+                <>
+                  <Button
+                    onClick={onClose}
+                    sx={dailyCalReturnBtnStyle(maxMobileContentSize)}
+                    disableRipple
+                  >
+                    <KeyboardReturnIcon sx={returnIconStyle} />
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button onClick={onClose} sx={closeBtnStyle} disableRipple>
+                    <CloseIcon sx={closeIconStyle} />
+                  </Button>
+                </>
+              )}
+              {children}
+            </Box>
+          </Modal>
+        </>
+      )}
+      {type === 'add-product' && (
+        <>
+          <Modal
+            open={open}
+            onClose={onClose}
+            slotProps={{
+              backdrop: {
+                sx: addProdBackdropStyle,
+              },
+            }}
+            sx={addProdModalStyle}
+          >
+            <Box sx={addProdBoxStyle}>
+              <Box onClick={onClose} sx={returnBtnBoxStyle}>
+                <Button
+                  onClick={onClose}
+                  sx={addProdReturnBtnStyle(maxMobileContentSize)}
+                  disableRipple
+                >
+                  <KeyboardReturnIcon sx={returnIconStyle} />
+                </Button>
+              </Box>
+
+              {children}
+            </Box>
+          </Modal>
+        </>
+      )}
     </>
   );
 };
