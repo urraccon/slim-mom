@@ -1,21 +1,22 @@
 {
   "files": {
     "main.css": "/slim-mom/static/css/main.b84ee46e.css",
-    "main.js": "/slim-mom/static/js/main.49fb6b32.js",
-    "static/media/desktop-login-bg.jpg": "/slim-mom/static/media/desktop-login-bg.15e8a8d96a926ec26809.jpg",
-    "static/media/desktop-main-page-bg.jpg": "/slim-mom/static/media/desktop-main-page-bg.15e8a8d96a926ec26809.jpg",
-    "static/media/desktop-registration-bg.jpg": "/slim-mom/static/media/desktop-registration-bg.15e8a8d96a926ec26809.jpg",
-    "static/media/tablet-login-bg.jpg": "/slim-mom/static/media/tablet-login-bg.bd8717ec6382f128891f.jpg",
-    "static/media/tablet-registration-bg.jpg": "/slim-mom/static/media/tablet-registration-bg.bd8717ec6382f128891f.jpg",
-    "static/media/tablet-main-page-bg.jpg": "/slim-mom/static/media/tablet-main-page-bg.dd04d75f816eeacb9fec.jpg",
-    "static/media/desktop-diary-bg.jpg": "/slim-mom/static/media/desktop-diary-bg.602107fa090b4c880bf6.jpg",
-    "static/media/tablet-diary-bg.jpg": "/slim-mom/static/media/tablet-diary-bg.d1bdbdb0800f3b8d84fe.jpg",
+    "main.js": "/slim-mom/static/js/main.6835b428.js",
+    "static/media/login-page-desktop-bg.jpg": "/slim-mom/static/media/login-page-desktop-bg.15e8a8d96a926ec26809.jpg",
+    "static/media/main-page-desktop-bg.jpg": "/slim-mom/static/media/main-page-desktop-bg.15e8a8d96a926ec26809.jpg",
+    "static/media/registration-page-desktop-bg.jpg": "/slim-mom/static/media/registration-page-desktop-bg.15e8a8d96a926ec26809.jpg",
+    "static/media/login-page-tablet-bg.jpg": "/slim-mom/static/media/login-page-tablet-bg.bd8717ec6382f128891f.jpg",
+    "static/media/registration-page-tablet-bg.jpg": "/slim-mom/static/media/registration-page-tablet-bg.bd8717ec6382f128891f.jpg",
+    "static/media/main-page-tablet-bg.jpg": "/slim-mom/static/media/main-page-tablet-bg.dd04d75f816eeacb9fec.jpg",
+    "static/media/diary-page-desktop-bg.png": "/slim-mom/static/media/diary-page-desktop-bg.7d23c9aeafab2e9ed9d5.png",
+    "static/media/diary-page-tablet-bg.png": "/slim-mom/static/media/diary-page-tablet-bg.4abd13e470a407be758f.png",
+    "static/media/slim-mom-desktop-logo.png": "/slim-mom/static/media/slim-mom-desktop-logo.7ff54d6cd27df8fb526f.png",
     "index.html": "/slim-mom/index.html",
     "main.b84ee46e.css.map": "/slim-mom/static/css/main.b84ee46e.css.map",
-    "main.49fb6b32.js.map": "/slim-mom/static/js/main.49fb6b32.js.map"
+    "main.6835b428.js.map": "/slim-mom/static/js/main.6835b428.js.map"
   },
   "entrypoints": [
     "static/css/main.b84ee46e.css",
-    "static/js/main.49fb6b32.js"
+    "static/js/main.6835b428.js"
   ]
 }
